@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #292235;
+  background: #f8f6fb;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #24113f;
+  color: white;
+  position: fixed;
+  inset: 0 auto 0 0;
+  padding: 35px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  text-align: center;
+  padding-bottom: 38px;
+}
+
+.crown {
+  color: #d8b45c;
+  font-size: 42px;
+}
+
+.brand h2 {
+  margin: 4px 0;
+  font-family: 'Playfair Display', serif;
+  color: #e5c675;
+  font-size: 30px;
+  letter-spacing: 4px;
+}
+
+.brand span {
+  font-size: 11px;
+  letter-spacing: 5px;
+}
+
+nav {
+  display: grid;
+  gap: 9px;
+}
+
+nav a {
+  color: #e8e1f0;
+  text-decoration: none;
+  padding: 13px 14px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+nav a:hover,
+nav a.active {
+  background: #493066;
+  color: #f0d28a;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  display: grid;
+  gap: 7px;
+  color: #d8b45c;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.main {
+  margin-left: 250px;
+  padding: 35px 5%;
+  max-width: 1600px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.eyebrow,
+.gold-label {
+  color: #9a762e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 3vw, 36px);
+  margin-bottom: 0;
+  color: #29183d;
+}
+
+.profile-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #24113f;
+  color: #e5c675;
+  font-weight: 700;
+}
+
+.welcome {
+  background: linear-gradient(120deg, #291541, #56356f);
+  color: white;
+  padding: 45px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 230px;
+  box-shadow: 0 12px 30px #24113f20;
+}
+
+.welcome h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 3vw, 36px);
+  max-width: 550px;
+  margin: 12px 0;
+}
+
+.welcome p:last-child {
+  color: #e7dfea;
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.welcome .gold-label {
+  color: #e5c675;
+}
+
+.welcome-crown {
+  color: #d8b45c;
+  font-size: 100px;
+  padding: 0 20px;
+}
+
+.section-heading {
+  margin: 40px 0 22px;
+}
+
+.section-heading h2 {
+  color: #29183d;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 6px;
+}
+
+.section-heading p {
+  color: #81798b;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: white;
+  border: 1px solid #eee8f3;
+  border-radius: 14px;
+  padding: 25px;
+  min-height: 190px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px #24113f12;
+}
+
+.feature-icon {
+  font-size: 27px;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  color: #321d49;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+.feature-card p {
+  color: #82798c;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 40px;
+}
+
+.view-link {
+  color: #99752e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+footer {
+  text-align: center;
+  padding: 55px 10px 20px;
+  color: #81798b;
+  font-size: 12px;
+}
+
+footer strong {
+  color: #38214f;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main {
+    margin-left: 200px;
+    padding: 25px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    padding: 18px;
+  }
+
+  .brand {
+    padding-bottom: 15px;
+  }
+
+  nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 22px 16px;
+  }
+
+  .welcome {
+    padding: 28px 22px;
+  }
+
+  .welcome-crown {
+    display: none;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
