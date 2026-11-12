@@ -1,39 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { supabase } from "./lib/supabase";
+import Auth from "./Auth";
 
 const features = [
-  {
-    icon: "📊",
-    title: "Credit Overview",
-    description: "View and monitor your credit progress."
-  },
-  {
-    icon: "💳",
-    title: "Credit Accounts",
-    description: "Organize balances, limits, and account details."
-  },
-  {
-    icon: "📁",
-    title: "Collections",
-    description: "Track collection accounts and important dates."
-  },
-  {
-    icon: "⚖️",
-    title: "Dispute Center",
-    description: "Manage disputes and follow their progress."
-  },
-  {
-    icon: "📈",
-    title: "Credit Scores",
-    description: "Keep track of your credit scores over time."
-  },
-  {
-    icon: "🔒",
-    title: "Secure Documents",
-    description: "Keep important financial documents organized."
-  }
+  ["📊", "Credit Overview", "View and monitor your credit progress."],
+  ["💳", "Credit Accounts", "Organize balances, limits, and account details."],
+  ["📁", "Collections", "Track collection accounts and important dates."],
+  ["⚖️", "Dispute Center", "Manage disputes and follow their progress."],
+  ["📈", "Credit Scores", "Keep track of your credit scores over time."],
+  ["🔒", "Secure Documents", "Keep important financial documents organized."]
 ];
 
 export default function App() {
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setLoading(false);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => setSession(session)
+    );
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  async function signOut() {
+    await supabase.auth.signOut();
+  }
+
+  if (loading) return <p>Loading PESBW Financial...</p>;
+
+  if (!session) return <Auth />;
+
   return (
     <div className="app">
       <aside className="sidebar">
@@ -53,6 +55,10 @@ export default function App() {
           <a href="#documents">▧ Documents</a>
           <a href="#profile">⚙ My Profile</a>
         </nav>
+
+        <button className="logout-button" onClick={signOut}>
+          Sign Out
+        </button>
 
         <div className="sidebar-footer">
           <span>YOUR CREDIT.</span>
@@ -76,26 +82,24 @@ export default function App() {
             <h2>Take control of your financial future.</h2>
             <p>
               Your personal space to organize credit information,
-              monitor progress, and manage your financial documents.
+              monitor progress, and manage financial documents.
             </p>
           </div>
           <div className="welcome-crown">♛</div>
         </section>
 
         <section className="section-heading">
-          <div>
-            <h2>Your Financial Tools</h2>
-            <p>Everything you need, organized in one place.</p>
-          </div>
+          <h2>Your Financial Tools</h2>
+          <p>Everything you need, organized in one place.</p>
         </section>
 
         <section className="feature-grid">
-          {features.map((feature) => (
-            <article className="feature-card" key={feature.title}>
-              <div className="feature-icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-              <span className="view-link">Explore →</span>
+          {features.map(([icon, title, description]) => (
+            <article className="feature-card" key={title}>
+              <div className="feature-icon">{icon}</div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <span className="view-link">Coming Soon</span>
             </article>
           ))}
         </section>
