@@ -396,3 +396,17 @@ footer strong {
   font-weight: 700;
   cursor: pointer;
 }
+.logout-button {
+  margin-top: 20px;
+  padding: 12px;
+  border: 1px solid #d8b45c;
+  border-radius: 8px;
+  background: transparent;
+  color: #e5c675;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #493066;
+}
